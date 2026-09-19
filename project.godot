@@ -19,7 +19,7 @@ run/main_scene="uid://c36enfgvaf1b6"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 run/max_fps=60
 run/low_processor_mode=true
-config/icon="res://icon.svg"
+config/icon="uid://dmk07fmoya8jr"
 
 [autoload]
 
