@@ -519,6 +519,7 @@ texture_normal = ExtResource("22_a6jrf")
 ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("22_lswn8")
+command = "systemctl suspend --help"
 
 [node name="Outline TextureRect" type="TextureRect" parent="Contents CenterContainer/System GridContainer/Sleep" unique_id=988810681]
 layout_mode = 1
@@ -540,6 +541,7 @@ texture_normal = ExtResource("25_a6jrf")
 ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("22_lswn8")
+command = "systemctl reboot --help"
 
 [node name="Outline TextureRect" type="TextureRect" parent="Contents CenterContainer/System GridContainer/Restart" unique_id=31398739]
 layout_mode = 1
@@ -561,6 +563,7 @@ texture_normal = ExtResource("23_xuqvo")
 ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("22_lswn8")
+command = "systemctl poweroff --help"
 
 [node name="Outline TextureRect" type="TextureRect" parent="Contents CenterContainer/System GridContainer/Shutdown" unique_id=344055337]
 layout_mode = 1
