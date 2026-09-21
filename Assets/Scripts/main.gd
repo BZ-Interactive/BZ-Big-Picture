@@ -1,7 +1,9 @@
 extends Node
 
+var menu_switcher: MenuSwitcher
+
 var active_fps: int = 60
-var background_fps: int = 1
+var background_fps: int = 2
 var vsync: DisplayServer.VSyncMode = DisplayServer.VSyncMode.VSYNC_ENABLED
 
 # Bare X11 timeout user parameters
@@ -32,6 +34,10 @@ func _notification(what: int) -> void:
 func _exit_tree() -> void:
 	DisplayServer.screen_set_keep_on(false)
 	_restore_screensaver()
+
+func launch_app(command: String) -> void:
+	var parts := command.split(" ", false)
+	OS.create_process(parts[0], parts.slice(1))
 
 func _capture_screensaver_state() -> void:
 	var output := []

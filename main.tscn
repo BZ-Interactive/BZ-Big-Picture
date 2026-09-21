@@ -3,10 +3,11 @@
 [ext_resource type="Script" uid="uid://xpixi432oycv" path="res://Assets/Scripts/menu_switcher.gd" id="1_074og"]
 [ext_resource type="Texture2D" uid="uid://de47t5ygaxo6r" path="res://Assets/Icons/svg/Menus/media.svg" id="2_0odxb"]
 [ext_resource type="Texture2D" uid="uid://dyiv7je187p2r" path="res://Assets/Icons/Logo/BZ-Interactive-Logo-16c-128.png" id="2_0xm2m"]
+[ext_resource type="Texture2D" uid="uid://dhqffaku5r6yt" path="res://Assets/Icons/svg/outline.svg" id="4_a6jrf"]
 [ext_resource type="Script" uid="uid://bjth0hb36cqua" path="res://Assets/Scripts/page.gd" id="4_getpj"]
 [ext_resource type="Texture2D" uid="uid://gh750dygq700" path="res://Assets/Icons/svg/Menus/game.svg" id="4_lswn8"]
 [ext_resource type="Texture2D" uid="uid://bhos5dtlinped" path="res://Assets/Icons/svg/Menus/linux_utilities.svg" id="5_a6jrf"]
-[ext_resource type="Script" uid="uid://xkufbuddm5qa" path="res://Assets/Scripts/Buttons/TextureButtonTint.gd" id="6_ryguw"]
+[ext_resource type="Script" uid="uid://xkufbuddm5qa" path="res://Assets/Scripts/Buttons/menu_button.gd" id="6_ryguw"]
 [ext_resource type="Texture2D" uid="uid://bndst3huthgxt" path="res://Assets/Icons/svg/Menus/system.svg" id="6_xuqvo"]
 [ext_resource type="Texture2D" uid="uid://cbbho5yk76tg8" path="res://Assets/Icons/svg/Media/music.svg" id="8_qsp4k"]
 [ext_resource type="Texture2D" uid="uid://cxgoxbdlpt62e" path="res://Assets/Icons/svg/Media/vlc.svg" id="9_kq58d"]
@@ -21,8 +22,8 @@
 [ext_resource type="Texture2D" uid="uid://c3eiasv0sowce" path="res://Assets/Icons/svg/System/update.svg" id="19_1u8w0"]
 [ext_resource type="Texture2D" uid="uid://d4nfhf6y8puv0" path="res://Assets/Icons/svg/Utilities/htop.svg" id="19_a6jrf"]
 [ext_resource type="Texture2D" uid="uid://cseuheqxsv5js" path="res://Assets/Icons/svg/Utilities/nvtop.svg" id="20_xuqvo"]
-[ext_resource type="Texture2D" uid="uid://htk8fxkf3kcy" path="res://Assets/Icons/svg/Utilities/debian.svg" id="21_qsp4k"]
 [ext_resource type="Texture2D" uid="uid://bwwsssfpuaxjs" path="res://Assets/Icons/svg/System/sleep.svg" id="22_a6jrf"]
+[ext_resource type="Script" uid="uid://djjpsvc545ell" path="res://Assets/Scripts/Buttons/app_button.gd" id="22_lswn8"]
 [ext_resource type="Texture2D" uid="uid://dikyfoc1jnc3j" path="res://Assets/Icons/svg/System/shutdown.svg" id="23_xuqvo"]
 [ext_resource type="Texture2D" uid="uid://bycsk4bfoihuw" path="res://Assets/Icons/svg/System/restart.svg" id="25_a6jrf"]
 
@@ -69,7 +70,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Menu VboxContainer" type="VBoxContainer" parent="." unique_id=1224946546 node_paths=PackedStringArray("MenuDict")]
+[node name="Menu VboxContainer" type="VBoxContainer" parent="." unique_id=1224946546 node_paths=PackedStringArray("media", "games")]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.029000001
@@ -80,60 +81,104 @@ offset_right = 0.41600037
 theme_override_constants/separation = 20
 alignment = 1
 script = ExtResource("1_074og")
-MenuDict = {
-NodePath("Media"): NodePath("../Contents CenterContainer/Media GridContainer"),
-NodePath("Games"): NodePath("../Contents CenterContainer/Games GridContainer"),
-NodePath("Utilities"): NodePath("../Contents CenterContainer/Utilities GridContainer"),
-NodePath("System"): NodePath("../Contents CenterContainer/System GridContainer")
-}
+media = NodePath("Media")
+games = NodePath("Games")
 
-[node name="Media" type="TextureButton" parent="Menu VboxContainer" unique_id=820095707]
+[node name="Media" type="TextureButton" parent="Menu VboxContainer" unique_id=820095707 node_paths=PackedStringArray("context_page")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 focus_neighbor_top = NodePath("../System")
-focus_neighbor_right = NodePath("../../Contents CenterContainer/Media GridContainer/Music")
 focus_neighbor_bottom = NodePath("../Games")
-focus_next = NodePath("../../Contents CenterContainer/Media GridContainer/Music")
 texture_normal = ExtResource("2_0odxb")
 ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("6_ryguw")
+context_page = NodePath("../../Contents CenterContainer/Media GridContainer")
 
-[node name="Games" type="TextureButton" parent="Menu VboxContainer" unique_id=1800247516]
+[node name="Outline TextureRect" type="TextureRect" parent="Menu VboxContainer/Media" unique_id=181554918]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+offset_transform_scale = Vector2(1.1, 1.1)
+texture = ExtResource("4_a6jrf")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Games" type="TextureButton" parent="Menu VboxContainer" unique_id=1800247516 node_paths=PackedStringArray("context_page")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 focus_neighbor_top = NodePath("../Media")
-focus_neighbor_right = NodePath("../../Contents CenterContainer/Games GridContainer/Duckstation")
 focus_neighbor_bottom = NodePath("../Utilities")
-focus_next = NodePath("../../Contents CenterContainer/Games GridContainer/Duckstation")
 texture_normal = ExtResource("4_lswn8")
 ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("6_ryguw")
+context_page = NodePath("../../Contents CenterContainer/Games GridContainer")
 
-[node name="Utilities" type="TextureButton" parent="Menu VboxContainer" unique_id=1219933222]
+[node name="Outline TextureRect" type="TextureRect" parent="Menu VboxContainer/Games" unique_id=1129339089]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+offset_transform_scale = Vector2(1.1, 1.1)
+texture = ExtResource("4_a6jrf")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Utilities" type="TextureButton" parent="Menu VboxContainer" unique_id=1219933222 node_paths=PackedStringArray("context_page")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 focus_neighbor_top = NodePath("../Games")
-focus_neighbor_right = NodePath("../../Contents CenterContainer/Utilities GridContainer/pcmanfm")
 focus_neighbor_bottom = NodePath("../System")
-focus_next = NodePath("../../Contents CenterContainer/Utilities GridContainer/pcmanfm")
 texture_normal = ExtResource("5_a6jrf")
 ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("6_ryguw")
+context_page = NodePath("../../Contents CenterContainer/Utilities GridContainer")
 
-[node name="System" type="TextureButton" parent="Menu VboxContainer" unique_id=753345976]
+[node name="Outline TextureRect" type="TextureRect" parent="Menu VboxContainer/Utilities" unique_id=359638303]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+offset_transform_scale = Vector2(1.1, 1.1)
+texture = ExtResource("4_a6jrf")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="System" type="TextureButton" parent="Menu VboxContainer" unique_id=753345976 node_paths=PackedStringArray("context_page")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 focus_neighbor_top = NodePath("../Utilities")
-focus_neighbor_right = NodePath("../../Contents CenterContainer/System GridContainer/Update")
 focus_neighbor_bottom = NodePath("../Media")
-focus_next = NodePath("../../Contents CenterContainer/System GridContainer/Update")
 texture_normal = ExtResource("6_xuqvo")
 ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("6_ryguw")
+context_page = NodePath("../../Contents CenterContainer/System GridContainer")
+
+[node name="Outline TextureRect" type="TextureRect" parent="Menu VboxContainer/System" unique_id=1902657023]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+offset_transform_scale = Vector2(1.1, 1.1)
+texture = ExtResource("4_a6jrf")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="Contents CenterContainer" type="CenterContainer" parent="." unique_id=1498957349]
 layout_mode = 1
@@ -160,8 +205,22 @@ layout_mode = 2
 texture_normal = ExtResource("8_qsp4k")
 ignore_texture_size = true
 stretch_mode = 5
-script = ExtResource("6_ryguw")
+script = ExtResource("22_lswn8")
+command = "alacritty -o \"font.size=16.0\" -e kew"
 metadata/command = "alacritty -e kew"
+
+[node name="Outline TextureRect" type="TextureRect" parent="Contents CenterContainer/Media GridContainer/Music" unique_id=767798902]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+offset_transform_scale = Vector2(1.1, 1.1)
+texture = ExtResource("4_a6jrf")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="VLC" type="TextureButton" parent="Contents CenterContainer/Media GridContainer" unique_id=969892561]
 custom_minimum_size = Vector2(180, 180)
@@ -169,7 +228,21 @@ layout_mode = 2
 texture_normal = ExtResource("9_kq58d")
 ignore_texture_size = true
 stretch_mode = 5
-script = ExtResource("6_ryguw")
+script = ExtResource("22_lswn8")
+command = "vlc"
+
+[node name="Outline TextureRect" type="TextureRect" parent="Contents CenterContainer/Media GridContainer/VLC" unique_id=1167638693]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+offset_transform_scale = Vector2(1.1, 1.1)
+texture = ExtResource("4_a6jrf")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="Youtube" type="TextureButton" parent="Contents CenterContainer/Media GridContainer" unique_id=286965948]
 custom_minimum_size = Vector2(180, 180)
@@ -177,7 +250,21 @@ layout_mode = 2
 texture_normal = ExtResource("10_seu75")
 ignore_texture_size = true
 stretch_mode = 5
-script = ExtResource("6_ryguw")
+script = ExtResource("22_lswn8")
+command = "vacuumtube"
+
+[node name="Outline TextureRect" type="TextureRect" parent="Contents CenterContainer/Media GridContainer/Youtube" unique_id=244966689]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+offset_transform_scale = Vector2(1.1, 1.1)
+texture = ExtResource("4_a6jrf")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="Web" type="TextureButton" parent="Contents CenterContainer/Media GridContainer" unique_id=740128726]
 custom_minimum_size = Vector2(180, 180)
@@ -185,7 +272,21 @@ layout_mode = 2
 texture_normal = ExtResource("11_htxhm")
 ignore_texture_size = true
 stretch_mode = 5
-script = ExtResource("6_ryguw")
+script = ExtResource("22_lswn8")
+command = "chromium"
+
+[node name="Outline TextureRect" type="TextureRect" parent="Contents CenterContainer/Media GridContainer/Web" unique_id=1158676399]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+offset_transform_scale = Vector2(1.1, 1.1)
+texture = ExtResource("4_a6jrf")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="Games GridContainer" type="GridContainer" parent="Contents CenterContainer" unique_id=799097362 node_paths=PackedStringArray("parent")]
 visible = false
@@ -202,7 +303,21 @@ layout_mode = 2
 texture_normal = ExtResource("12_jq2sk")
 ignore_texture_size = true
 stretch_mode = 5
-script = ExtResource("6_ryguw")
+script = ExtResource("22_lswn8")
+command = "duckstation"
+
+[node name="Outline TextureRect" type="TextureRect" parent="Contents CenterContainer/Games GridContainer/Duckstation" unique_id=1587659061]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+offset_transform_scale = Vector2(1.1, 1.1)
+texture = ExtResource("4_a6jrf")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="PCSX2" type="TextureButton" parent="Contents CenterContainer/Games GridContainer" unique_id=199018445]
 custom_minimum_size = Vector2(180, 180)
@@ -210,7 +325,21 @@ layout_mode = 2
 texture_normal = ExtResource("13_4k2k6")
 ignore_texture_size = true
 stretch_mode = 5
-script = ExtResource("6_ryguw")
+script = ExtResource("22_lswn8")
+command = "/opt/launch_pcsx2.sh"
+
+[node name="Outline TextureRect" type="TextureRect" parent="Contents CenterContainer/Games GridContainer/PCSX2" unique_id=585867952]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+offset_transform_scale = Vector2(1.1, 1.1)
+texture = ExtResource("4_a6jrf")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="Steam" type="TextureButton" parent="Contents CenterContainer/Games GridContainer" unique_id=1188802780]
 custom_minimum_size = Vector2(180, 180)
@@ -218,7 +347,21 @@ layout_mode = 2
 texture_normal = ExtResource("15_ok6jj")
 ignore_texture_size = true
 stretch_mode = 5
-script = ExtResource("6_ryguw")
+script = ExtResource("22_lswn8")
+command = "steam"
+
+[node name="Outline TextureRect" type="TextureRect" parent="Contents CenterContainer/Games GridContainer/Steam" unique_id=1544709202]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+offset_transform_scale = Vector2(1.1, 1.1)
+texture = ExtResource("4_a6jrf")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="Lutris" type="TextureButton" parent="Contents CenterContainer/Games GridContainer" unique_id=1987379545]
 custom_minimum_size = Vector2(180, 180)
@@ -226,7 +369,21 @@ layout_mode = 2
 texture_normal = ExtResource("16_facbu")
 ignore_texture_size = true
 stretch_mode = 5
-script = ExtResource("6_ryguw")
+script = ExtResource("22_lswn8")
+command = "lutris"
+
+[node name="Outline TextureRect" type="TextureRect" parent="Contents CenterContainer/Games GridContainer/Lutris" unique_id=1194773202]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+offset_transform_scale = Vector2(1.1, 1.1)
+texture = ExtResource("4_a6jrf")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="Utilities GridContainer" type="GridContainer" parent="Contents CenterContainer" unique_id=2125862402 node_paths=PackedStringArray("parent")]
 visible = false
@@ -243,7 +400,21 @@ layout_mode = 2
 texture_normal = ExtResource("17_a6jrf")
 ignore_texture_size = true
 stretch_mode = 5
-script = ExtResource("6_ryguw")
+script = ExtResource("22_lswn8")
+command = "pcmanfm"
+
+[node name="Outline TextureRect" type="TextureRect" parent="Contents CenterContainer/Utilities GridContainer/pcmanfm" unique_id=744366857]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+offset_transform_scale = Vector2(1.1, 1.1)
+texture = ExtResource("4_a6jrf")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="Alacritty" type="TextureButton" parent="Contents CenterContainer/Utilities GridContainer" unique_id=1744567605]
 custom_minimum_size = Vector2(180, 180)
@@ -251,7 +422,21 @@ layout_mode = 2
 texture_normal = ExtResource("18_b1qrp")
 ignore_texture_size = true
 stretch_mode = 5
-script = ExtResource("6_ryguw")
+script = ExtResource("22_lswn8")
+command = "sh -c cd;alacritty"
+
+[node name="Outline TextureRect" type="TextureRect" parent="Contents CenterContainer/Utilities GridContainer/Alacritty" unique_id=1312545013]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+offset_transform_scale = Vector2(1.1, 1.1)
+texture = ExtResource("4_a6jrf")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="htop" type="TextureButton" parent="Contents CenterContainer/Utilities GridContainer" unique_id=1807812772]
 custom_minimum_size = Vector2(180, 180)
@@ -259,7 +444,21 @@ layout_mode = 2
 texture_normal = ExtResource("19_a6jrf")
 ignore_texture_size = true
 stretch_mode = 5
-script = ExtResource("6_ryguw")
+script = ExtResource("22_lswn8")
+command = "alacritty -e htop"
+
+[node name="Outline TextureRect" type="TextureRect" parent="Contents CenterContainer/Utilities GridContainer/htop" unique_id=104147994]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+offset_transform_scale = Vector2(1.1, 1.1)
+texture = ExtResource("4_a6jrf")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="nvtop" type="TextureButton" parent="Contents CenterContainer/Utilities GridContainer" unique_id=2143974545]
 custom_minimum_size = Vector2(180, 180)
@@ -267,16 +466,21 @@ layout_mode = 2
 texture_normal = ExtResource("20_xuqvo")
 ignore_texture_size = true
 stretch_mode = 5
-script = ExtResource("6_ryguw")
+script = ExtResource("22_lswn8")
+command = "alacritty -e nvtop"
 
-[node name="fastfetch" type="TextureButton" parent="Contents CenterContainer/Utilities GridContainer" unique_id=757607331]
-visible = false
-custom_minimum_size = Vector2(180, 180)
-layout_mode = 2
-texture_normal = ExtResource("21_qsp4k")
-ignore_texture_size = true
+[node name="Outline TextureRect" type="TextureRect" parent="Contents CenterContainer/Utilities GridContainer/nvtop" unique_id=1263469100]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+offset_transform_scale = Vector2(1.1, 1.1)
+texture = ExtResource("4_a6jrf")
+expand_mode = 1
 stretch_mode = 5
-script = ExtResource("6_ryguw")
 
 [node name="System GridContainer" type="GridContainer" parent="Contents CenterContainer" unique_id=1342972865 node_paths=PackedStringArray("parent")]
 visible = false
@@ -293,7 +497,20 @@ layout_mode = 2
 texture_normal = ExtResource("19_1u8w0")
 ignore_texture_size = true
 stretch_mode = 5
-script = ExtResource("6_ryguw")
+script = ExtResource("22_lswn8")
+
+[node name="Outline TextureRect" type="TextureRect" parent="Contents CenterContainer/System GridContainer/Update" unique_id=1293103231]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+offset_transform_scale = Vector2(1.1, 1.1)
+texture = ExtResource("4_a6jrf")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="Sleep" type="TextureButton" parent="Contents CenterContainer/System GridContainer" unique_id=2099541497]
 custom_minimum_size = Vector2(150, 150)
@@ -301,7 +518,20 @@ layout_mode = 2
 texture_normal = ExtResource("22_a6jrf")
 ignore_texture_size = true
 stretch_mode = 5
-script = ExtResource("6_ryguw")
+script = ExtResource("22_lswn8")
+
+[node name="Outline TextureRect" type="TextureRect" parent="Contents CenterContainer/System GridContainer/Sleep" unique_id=988810681]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+offset_transform_scale = Vector2(1.1, 1.1)
+texture = ExtResource("4_a6jrf")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="Restart" type="TextureButton" parent="Contents CenterContainer/System GridContainer" unique_id=2041391802]
 custom_minimum_size = Vector2(150, 150)
@@ -309,7 +539,20 @@ layout_mode = 2
 texture_normal = ExtResource("25_a6jrf")
 ignore_texture_size = true
 stretch_mode = 5
-script = ExtResource("6_ryguw")
+script = ExtResource("22_lswn8")
+
+[node name="Outline TextureRect" type="TextureRect" parent="Contents CenterContainer/System GridContainer/Restart" unique_id=31398739]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+offset_transform_scale = Vector2(1.1, 1.1)
+texture = ExtResource("4_a6jrf")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="Shutdown" type="TextureButton" parent="Contents CenterContainer/System GridContainer" unique_id=1084777623]
 custom_minimum_size = Vector2(150, 150)
@@ -317,7 +560,20 @@ layout_mode = 2
 texture_normal = ExtResource("23_xuqvo")
 ignore_texture_size = true
 stretch_mode = 5
-script = ExtResource("6_ryguw")
+script = ExtResource("22_lswn8")
+
+[node name="Outline TextureRect" type="TextureRect" parent="Contents CenterContainer/System GridContainer/Shutdown" unique_id=344055337]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+offset_transform_scale = Vector2(1.1, 1.1)
+texture = ExtResource("4_a6jrf")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="Logo TextureRect" type="TextureRect" parent="." unique_id=130981496]
 layout_mode = 1
@@ -332,19 +588,3 @@ offset_transform_position = Vector2(-10, 10)
 texture = ExtResource("2_0xm2m")
 expand_mode = 4
 stretch_mode = 5
-
-[connection signal="focus_entered" from="Menu VboxContainer/Media" to="Menu VboxContainer" method="_on_focus_entered" binds= [0]]
-[connection signal="focus_entered" from="Menu VboxContainer/Games" to="Menu VboxContainer" method="_on_focus_entered" binds= [1]]
-[connection signal="focus_entered" from="Menu VboxContainer/Utilities" to="Menu VboxContainer" method="_on_focus_entered" binds= [2]]
-[connection signal="focus_entered" from="Menu VboxContainer/System" to="Menu VboxContainer" method="_on_focus_entered" binds= [3]]
-[connection signal="pressed" from="Contents CenterContainer/Media GridContainer/Music" to="Menu VboxContainer" method="launch_app" binds= ["alacritty -o font.size=16 -e kew"]]
-[connection signal="pressed" from="Contents CenterContainer/Media GridContainer/VLC" to="Menu VboxContainer" method="launch_app" binds= ["vlc"]]
-[connection signal="pressed" from="Contents CenterContainer/Media GridContainer/Youtube" to="Menu VboxContainer" method="launch_app" binds= ["vacuumtube"]]
-[connection signal="pressed" from="Contents CenterContainer/Media GridContainer/Web" to="Menu VboxContainer" method="launch_app" binds= ["chromium"]]
-[connection signal="pressed" from="Contents CenterContainer/Games GridContainer/Steam" to="Menu VboxContainer" method="launch_app" binds= ["steam"]]
-[connection signal="pressed" from="Contents CenterContainer/Games GridContainer/Lutris" to="Menu VboxContainer" method="launch_app" binds= ["lutris"]]
-[connection signal="pressed" from="Contents CenterContainer/Utilities GridContainer/pcmanfm" to="Menu VboxContainer" method="launch_app" binds= ["pcmanfm"]]
-[connection signal="pressed" from="Contents CenterContainer/Utilities GridContainer/Alacritty" to="Menu VboxContainer" method="launch_app" binds= ["alacritty"]]
-[connection signal="pressed" from="Contents CenterContainer/Utilities GridContainer/htop" to="Menu VboxContainer" method="launch_app" binds= ["alacritty -e htop"]]
-[connection signal="pressed" from="Contents CenterContainer/Utilities GridContainer/nvtop" to="Menu VboxContainer" method="launch_app" binds= ["alacritty -e nvtop"]]
-[connection signal="pressed" from="Contents CenterContainer/Utilities GridContainer/fastfetch" to="Menu VboxContainer" method="launch_app" binds= ["alacritty -e bash"]]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://htk8fxkf3kcy"
-path="res://.godot/imported/debian.svg-8a6ae121550074cb7324bc24b53e6ad1.ctex"
+uid="uid://dhqffaku5r6yt"
+path="res://.godot/imported/outline.svg-343ee2a3cccf845a4538a7a9cb7f9bec.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Icons/svg/Utilities/debian.svg"
-dest_files=["res://.godot/imported/debian.svg-8a6ae121550074cb7324bc24b53e6ad1.ctex"]
+source_file="res://Assets/Icons/svg/outline.svg"
+dest_files=["res://.godot/imported/outline.svg-343ee2a3cccf845a4538a7a9cb7f9bec.ctex"]
 
 [params]
 
