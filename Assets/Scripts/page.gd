@@ -3,8 +3,11 @@ extends GridContainer
 @export var parent: TextureButton
 
 # Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	_set_navigation()
+func _init() -> void:
+	Main.buttons_ready.connect(_set_navigation)
+
+func _exit_tree() -> void:
+	Main.buttons_ready.disconnect(_set_navigation)
 
 func _set_navigation() -> void:
 	var count := self.get_child_count()

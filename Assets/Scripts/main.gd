@@ -5,6 +5,8 @@ var menu_switcher: MenuSwitcher
 var active_fps: int = 60
 var background_fps: int = 2
 var vsync: DisplayServer.VSyncMode = DisplayServer.VSyncMode.VSYNC_ENABLED
+var display_names: bool = false
+@onready var font: FontFile = FontFile.new()
 
 # Bare X11 timeout user parameters
 var user_timeout: int = 0
@@ -14,6 +16,9 @@ var user_dpms: bool = true
 # Dbus timeout parameters
 var used_dbus: bool = false
 var inhibit_cookie: int = -1
+
+
+@warning_ignore("unused_signal") signal buttons_ready # used in LauncherManager
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

@@ -4,10 +4,17 @@ class_name AppButton extends TextureButton
 @export var pressed_color: Color = Color.DARK_ORANGE
 @export var normal_color: Color = Color.DARK_GRAY
 
+var display_name = ""
 @export var command: String
-@onready var outline := self.get_child(0) as TextureRect
+@onready var outline: TextureRect = $"Outline TextureRect"
+@onready var name_label: Label = $"Name Label"
 
 func _ready():
+	if Main.display_names:
+		if Main.font:
+			name_label.add_theme_font_override("font", Main.font)
+		name_label.text = display_name
+		name_label.visible = true
 	outline.visible = false
 	self_modulate = normal_color
 	# signals

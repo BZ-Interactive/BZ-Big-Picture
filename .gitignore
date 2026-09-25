@@ -17,8 +17,11 @@ data_*/
 mono_crash.*.json
 .vscode/settings.json
 
-#MacOS specific ignores
+# MacOS specific ignores
 .DS_Store
+
+# Godot ignores
+.gdignore/
 
 # Export related folder
 Exports/

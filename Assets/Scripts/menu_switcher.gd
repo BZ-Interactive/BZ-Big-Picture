@@ -10,10 +10,9 @@ class_name MenuSwitcher extends VBoxContainer
 var index: int = 0
 var menu_count: int = 0
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
+func _init() -> void:
 	Main.menu_switcher = self
-	_init_menus()
+	Main.buttons_ready.connect(_init_menus)
 
 func _input(event: InputEvent) -> void:
 #	print("input of menu " + get_viewport().gui_get_focus_owner().get_parent().name)
@@ -24,6 +23,9 @@ func _input(event: InputEvent) -> void:
 		elif event.is_action_pressed("up"):
 			index = wrapi(index - 1, 0, menu_count)
 			close_all_menus()
+
+func _exit_tree() -> void:
+	Main.buttons_ready.disconnect(_init_menus)
 
 func close_all_menus() -> void:
 	for menu in Menus:
@@ -45,6 +47,3 @@ func _init_menus():
 	
 	menu_count = len(Menus)
 	Menus[0].grab_focus()
-
-func _on_focus_exited():
-	pass
