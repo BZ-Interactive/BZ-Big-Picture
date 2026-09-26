@@ -170,10 +170,10 @@ stretch_mode = 5
 [node name="Contents CenterContainer" type="CenterContainer" parent="." unique_id=1498957349]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.15900001
+anchor_left = 0.155
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -0.16801453
+offset_left = 3.600006
 offset_right = -1.0
 grow_horizontal = 2
 grow_vertical = 2
