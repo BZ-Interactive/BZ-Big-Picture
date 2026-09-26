@@ -126,4 +126,3 @@ func read_config() -> bool:
 	
 	_instantiate_buttons()
 	return true
-	

@@ -33,6 +33,8 @@ func _on_normal():
 
 func _on_pressed():
 	self_modulate = pressed_color
+	if command.begins_with("~/"): # home replace
+		command = command.replace("~", OS.get_environment("HOME"))
 	Main.launch_app(command)
 
 func _on_focus_entered() -> void:
