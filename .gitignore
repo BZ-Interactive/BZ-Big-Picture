@@ -30,6 +30,9 @@ builds/
 Build/
 Builds/
 
+# Inlcude docs
+!/docs/.gdignore/
+
 # LaTeX temporary files
 *.aux
 *.fdb_latexmk

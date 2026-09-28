@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Console-style launcher for Linux, made with Godot</title>
+<meta name="description" content="A lightweight, controller-friendly launcher for Linux. Four pages, up to 12 apps, configured with a single config.cfg file. Built with Godot.">
+<meta name="color-scheme" content="dark">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <a class="brand" href="https://github.com/BZ-Interactive">
+    <img src="images/BZ-Interactive-16c-64.webp">
+    <span>BZ Interactive</span>
+  </a>
+  <a class="ver" href="https://github.com/BZ-Interactive/BZ-Big-Picture/releases/latest">VERSION</a>
+</header>
+
+<main id="top">
+  <div class="hero">
+    <h1>A game console style launcher for Linux</h1>
+    <p class="lead">Pick a page on the left, pick an app in the middle. Made with Godot, controller-friendly, and set up with one config file.</p>
+    <div class="btns">
+      <a class="btn main" href="https://github.com/BZ-Interactive/BZ-Big-Picture/releases">Download</a>
+      <a class="btn" href="https://github.com/BZ-Interactive/BZ-Big-Picture">View the repo</a>
+      <a class="btn" href="docs/TDD.pdf">Read the docs (PDF)</a>
+    </div>  
+    <br>
+    <a  class="preview image" href="images/media_screen.jpg">
+      <img src="images/media_screen.jpg" alt="Media Category Screen">
+    </a>
+    
+  <section>
+    <h2>Very light on resources</h2>
+    <dl class="stats">
+      <div><dt>CPU usage at idle</dt><dd>5%</dd></div>
+      <div><dt>RAM</dt><dd>~125 MB</dd></div>
+      <div><dt>Max power draw</dt><dd>2.2 W</dd></div>
+    </dl>
+    <p class="small">Measured on an Intel Core i7-7700HQ laptop, version VERSION.</p>
+  </section>
+    
+  <section>
+    <h2>How it works</h2>
+    <dl class="feat">
+      <div><dt>Four pages</dt><dd>Switch between four pages from the left column. Group your apps however you like under: media, games, tools, system.</dd></div>
+      <div><dt>Apps in the center</dt><dd>Each page shows its apps as large tiles that are easy to hit with a controller, remote or keyboard.</dd></div>
+      <div><dt>One config file</dt><dd>Everything is set up in <code>config.cfg</code>. Add as many apps as you want; 12 or fewer works best.</dd></div>
+      <div><dt>Smart Idle</dt><dd>Reduces background activity when not in focus. Going as low as 2% CPU usage at idle clocks and 1.8 W used when not in focus.</dd></div>
+      <div><dt>Broad font, image, video, sound support</dt><dd>Supports many file types built into the Godot engine with custom built exec not excluding any formats.</dd></div>
+      <div><dt>Made with Godot</dt><dd>Built in the Godot engine for Linux, so it feels like a game console and starts like a small app.</dd></div>
+    </dl>
+  </section>
+
+  
+  <section id="preview">
+    <h2>Screenshots</h2>
+    <div class="shots">
+      <a href="images/media_screen.jpg"><img src="images/media_screen.jpg"></a>
+      <a href="images/games_screen.jpg"><img src="images/games_screen.jpg"></a>
+      <a href="images/utilities_screen.jpg"><img src="images/utilities_screen.jpg"></a>
+      <a href="images/system_screen.jpg"><img src="images/system_screen.jpg"></a>
+      <a href="images/names_media_screen.jpg"><img src="images/names_media_screen.jpg"></a>
+      <a href="images/selected_screen.jpg"><img src="images/selected_screen.jpg"></a>
+    </div>
+  </section>
+
+  <div class="cta">
+    <h2>Try it on your Linux machine</h2>
+    <p>Download v1.0.1, edit <code>config.cfg</code> to add your apps, and launch.</p>
+    <div class="btns">
+      <a class="btn main" href="https://github.com/BZ-Interactive/BZ-Big-Picture/releases/latest">Get the latest release</a>
+      <a class="btn" href="https://github.com/BZ-Interactive/BZ-Big-Picture">Source on GitHub</a>
+      <a class="btn" href="docs/TDD.pdf">Documentation (PDF)</a>
+    </div>
+  </div>
+</main>
+
+<footer>© 2026 BZ Interactive · vVERSION</footer>
+</div>
+
+<script>
+  document.body.innerHTML = document.body.innerHTML.replaceAll("VERSION", "1.0.1");
+</script>
+
+</body>
+</html>
