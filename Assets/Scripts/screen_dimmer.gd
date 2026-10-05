@@ -30,6 +30,7 @@ func _exit_tree() -> void:
 func _init_screen_dimmer() -> void:
 	self.color.a = darkness
 	idle_timer.wait_time = idle_time - DIM_DURATION
+	idle_timer.start()
 
 func _wake_screen() -> void:
 	idle_timer.start()

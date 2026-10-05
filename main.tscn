@@ -242,4 +242,3 @@ script = ExtResource("12_dg77c")
 [node name="Idle Timer" type="Timer" parent="Screen Dimmer ColorRect" unique_id=1282893471]
 wait_time = 10.0
 one_shot = true
-autostart = true
