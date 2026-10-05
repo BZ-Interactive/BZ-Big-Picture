@@ -8,12 +8,14 @@ class_name LauncherManager extends Control
 @onready var utilities_menu: Menu = $"Menu VboxContainer/Utilities"
 @onready var system_menu: Menu = $"Menu VboxContainer/System"
 
+var install_dir: String = OS.get_executable_path().get_base_dir()
 var config_path: String = ""
 var config = ConfigFile.new()
 
 var display_names: bool = false
 var media_disabled: bool = false
 var games_disabled: bool = false
+var utilities_disabled: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -29,9 +31,9 @@ const CATEGORIES := [
 func _load_font(path: String) -> void:
 	if path == "":
 		return
-	var font_dir: String = "Fonts".path_join(path)
+	var font_dir: String = install_dir.path_join("Fonts").path_join(path)
 	if OS.has_feature("editor"):
-		font_dir = "res://.gdignore/Build/Fonts".path_join(path)
+		font_dir = "res://Build/Package/Fonts".path_join(path)
 	
 	if ( # font exist now type check
 		path.ends_with(".ttf")
@@ -48,9 +50,9 @@ func _load_font(path: String) -> void:
 		print("Invalid font file format.")
 
 func _load_icon(path: String) -> Texture2D:
-	var icon_dir: String = "Icons".path_join(path)
+	var icon_dir: String = install_dir.path_join("Icons").path_join(path)
 	if OS.has_feature("editor"):
-		icon_dir = "res://.gdignore/Build/Icons".path_join(path)
+		icon_dir = "res://Build/Package/Icons".path_join(path)
 	
 	if FileAccess.file_exists(icon_dir):
 		var image = Image.new()
@@ -68,6 +70,8 @@ func _instantiate_buttons() -> void:
 		if media_disabled && category == CATEGORIES[0]:
 			continue
 		if games_disabled && category == CATEGORIES[1]:
+			continue
+		if utilities_disabled && category == CATEGORIES[2]:
 			continue
 		
 		if OS.has_feature("editor"):
@@ -102,7 +106,8 @@ func read_config() -> bool:
 	if OS.has_feature("editor"): # in editor look at project root
 		config_path = ProjectSettings.globalize_path("res://config.cfg")
 	else: # exported look beside executable
-		config_path = OS.get_executable_path().get_base_dir().path_join("config.cfg")
+		config_path = install_dir.path_join("config.cfg")
+		print(config_path)
 	
 	var err = config.load(config_path)
 	if err != OK:
@@ -115,6 +120,11 @@ func read_config() -> bool:
 	display_names = config.get_value("main", "display_names")
 	media_disabled = config.get_value("main", "media_disabled")
 	games_disabled = config.get_value("main", "games_disabled")
+	utilities_disabled = config.get_value("main", "utilities_disabled")
+	
+	var brightness = config.get_value("main", "brightness", 1.0)
+	var idle_time = config.get_value("main", "idle_time", 600)
+	
 	# assign main variables
 	_load_font(config.get_value("main", "font", ""))
 	Main.active_fps = active_fps
@@ -123,6 +133,9 @@ func read_config() -> bool:
 	Main.display_names = display_names
 	Main.menu_switcher.media_disabled = media_disabled
 	Main.menu_switcher.games_disabled = games_disabled
-	
+	Main.menu_switcher.utilities_disabled = utilities_disabled
+	# dimming settings
+	Main.screen_dimmer.darkness = clampf(1.0 - brightness, 0.0, 0.9)
+	Main.screen_dimmer.idle_time = idle_time
 	_instantiate_buttons()
 	return true

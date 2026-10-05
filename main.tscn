@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://bhos5dtlinped" path="res://Assets/Icons/svg/Menus/linux_utilities.svg" id="5_a6jrf"]
 [ext_resource type="Script" uid="uid://xkufbuddm5qa" path="res://Assets/Scripts/Buttons/menu_button.gd" id="6_ryguw"]
 [ext_resource type="Texture2D" uid="uid://bndst3huthgxt" path="res://Assets/Icons/svg/Menus/system.svg" id="6_xuqvo"]
+[ext_resource type="Script" uid="uid://ykbom2bclkpj" path="res://Assets/Scripts/screen_dimmer.gd" id="12_dg77c"]
 
 [node name="Main" type="Control" unique_id=1969664079]
 layout_mode = 3
@@ -57,7 +58,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Menu VboxContainer" type="VBoxContainer" parent="." unique_id=1224946546 node_paths=PackedStringArray("media", "games")]
+[node name="Menu VboxContainer" type="VBoxContainer" parent="." unique_id=1224946546 node_paths=PackedStringArray("media", "games", "utilities")]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.029000001
@@ -70,6 +71,7 @@ alignment = 1
 script = ExtResource("1_074og")
 media = NodePath("Media")
 games = NodePath("Games")
+utilities = NodePath("Utilities")
 
 [node name="Media" type="TextureButton" parent="Menu VboxContainer" unique_id=820095707 node_paths=PackedStringArray("context_page")]
 custom_minimum_size = Vector2(150, 150)
@@ -226,3 +228,18 @@ offset_transform_position = Vector2(-10, 10)
 texture = ExtResource("2_0xm2m")
 expand_mode = 4
 stretch_mode = 5
+
+[node name="Screen Dimmer ColorRect" type="ColorRect" parent="." unique_id=602937341]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
+script = ExtResource("12_dg77c")
+
+[node name="Idle Timer" type="Timer" parent="Screen Dimmer ColorRect" unique_id=1282893471]
+wait_time = 10.0
+one_shot = true
+autostart = true

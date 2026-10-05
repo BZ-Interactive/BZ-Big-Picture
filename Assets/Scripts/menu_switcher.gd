@@ -6,6 +6,9 @@ class_name MenuSwitcher extends VBoxContainer
 @export var media_disabled : bool
 @export var games : Menu
 @export var games_disabled : bool
+@export var utilities : Menu
+@export var utilities_disabled : bool
+
 
 var index: int = 0
 var menu_count: int = 0
@@ -15,7 +18,6 @@ func _init() -> void:
 	Main.buttons_ready.connect(_init_menus)
 
 func _input(event: InputEvent) -> void:
-#	print("input of menu " + get_viewport().gui_get_focus_owner().get_parent().name)
 	if get_viewport().gui_get_focus_owner().get_parent() == self:
 		if event.is_action_pressed("down"):
 			index = wrapi(index + 1, 0, menu_count)
@@ -38,6 +40,9 @@ func _init_menus():
 	if games_disabled:
 		games.disabled = true
 		games.visible = false
+	if utilities_disabled:
+		utilities.disabled = true
+		utilities.visible = false
 	
 	for menu in self.get_children():
 		menu = menu as Menu

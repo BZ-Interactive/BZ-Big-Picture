@@ -1,6 +1,7 @@
 extends Node
 
 var menu_switcher: MenuSwitcher
+var screen_dimmer: ScreenDimmer
 
 var active_fps: int = 60
 var background_fps: int = 2
@@ -17,8 +18,8 @@ var user_dpms: bool = true
 var used_dbus: bool = false
 var inhibit_cookie: int = -1
 
-
-@warning_ignore("unused_signal") signal buttons_ready # used in LauncherManager
+## This is basically the config read and ready to display signal.
+@warning_ignore("unused_signal") signal buttons_ready # used in LauncherManager, ScreenDimmer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -63,10 +64,7 @@ func _capture_screensaver_state() -> void:
 			elif parts[i] == "cycle:" and i + 1 < parts.size():
 				user_cycle = parts[i + 1].to_int()
 	
-	#print(user_timeout)
-	#print(user_cycle)
 	user_dpms = text.find("DPMS is Enabled") != -1
-	#print(user_dpms)
 
 func _inhibit_screensaver() -> void:
 	DisplayServer.screen_set_keep_on(true)
@@ -88,8 +86,7 @@ func _inhibit_screensaver() -> void:
 			inhibit_cookie = parts[index + 1].to_int()
 			used_dbus = true
 			return
-	#print(user_cycle)
-	#print(user_timeout)
+	
 	if DisplayServer.get_name() == "X11":
 		_capture_screensaver_state()
 		OS.create_process("xset", ["s", "off"])
@@ -114,10 +111,8 @@ func on_focus() -> void:
 	process_mode = Node.PROCESS_MODE_INHERIT
 	Engine.max_fps = active_fps
 	DisplayServer.window_set_vsync_mode(vsync)
-	#print("in focus")
 
 func on_focus_lost() -> void:
 	process_mode = Node.ProcessMode.PROCESS_MODE_DISABLED
 	Engine.max_fps = background_fps
 	DisplayServer.window_set_vsync_mode(DisplayServer.VSyncMode.VSYNC_DISABLED)
-	#print("out of focus")
