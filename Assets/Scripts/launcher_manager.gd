@@ -123,7 +123,7 @@ func read_config() -> bool:
 	utilities_disabled = config.get_value("main", "utilities_disabled")
 	
 	var brightness = config.get_value("main", "brightness", 1.0)
-	var idle_time = config.get_value("main", "idle_time", 600)
+	var idle_time = config.get_value("main", "idle_time", 300)
 	
 	# assign main variables
 	_load_font(config.get_value("main", "font", ""))
