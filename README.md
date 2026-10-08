@@ -29,7 +29,7 @@ Pre-compiled binaries are provided, so no system dependencies or package install
 
    **Example (Openbox on Debian):**
    ```bash
-   ~/BZ-Big-Picture-v1.1.1-linux-x86_64/"BZ Big Picture.x86_64" &
+   ~/BZ-Big-Picture-v1.2.0-linux-x86_64/"BZ Big Picture.x86_64" &
    ```
 
 ## Configuring the Launcher

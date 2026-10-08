@@ -3,6 +3,7 @@ class_name SoundPlayer extends AudioStreamPlayer
 @export var app_move: AudioStream
 @export var menu_move: AudioStream
 @export var ui_select: AudioStream
+@export var notification: AudioStream
 
 @onready var chime_player: AudioStreamPlayer = $"Chime Player"
 #@export var exit_chime: AudioStream
@@ -24,7 +25,7 @@ func play_startup_chime() -> void:
 #func play_exit_chime() -> void:
 #	chime_player.stream = exit_chime
 #	chime_player.play()
-	
+
 func play_menu_move_sound() -> void:
 	if first_menu_focus: # dont play the first time
 		first_menu_focus = false
@@ -36,3 +37,6 @@ func play_app_move_sound() -> void:
 	
 func play_select_sound() -> void:
 	_play_sound(ui_select)
+
+func play_notification_sound() -> void:
+	_play_sound(notification)
