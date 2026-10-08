@@ -5,7 +5,6 @@ class_name Menu extends TextureButton
 @export var normal_color: Color = Color.DARK_GRAY
 
 @export var context_page: GridContainer
-
 @onready var outline: TextureRect = self.get_child(0)
 
 func _ready():
@@ -31,6 +30,7 @@ func _on_focus_entered() -> void:
 	outline.visible = true
 	self_modulate = hover_color
 	open_page()
+	Main.sound_player.play_menu_move_sound()
 
 func _on_focus_exited() -> void:
 	outline.visible = false

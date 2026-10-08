@@ -2,6 +2,7 @@ extends Node
 
 var menu_switcher: MenuSwitcher
 var screen_dimmer: ScreenDimmer
+var sound_player: SoundPlayer
 
 var active_fps: int = 60
 var background_fps: int = 2

@@ -36,10 +36,12 @@ func _on_pressed():
 	if command.begins_with("~/"): # home replace
 		command = command.replace("~", OS.get_environment("HOME"))
 	Main.launch_app(command)
+	Main.sound_player.play_select_sound()
 
 func _on_focus_entered() -> void:
 	self_modulate = hover_color
 	outline.visible = true
+	Main.sound_player.play_app_move_sound()
 
 func _on_focus_exited() -> void:
 	self_modulate = normal_color

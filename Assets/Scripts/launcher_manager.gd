@@ -124,6 +124,7 @@ func read_config() -> bool:
 	
 	var brightness = config.get_value("main", "brightness", 1.0)
 	var idle_time = config.get_value("main", "idle_time", 300)
+	var volume_level = config.get_value("main", "volume", 1.0)
 	
 	# assign main variables
 	_load_font(config.get_value("main", "font", ""))
@@ -137,5 +138,7 @@ func read_config() -> bool:
 	# dimming settings
 	Main.screen_dimmer.darkness = clampf(1.0 - brightness, 0.0, 0.9)
 	Main.screen_dimmer.idle_time = idle_time
+	# sound settings
+	Main.sound_player.volume_linear = volume_level
 	_instantiate_buttons()
 	return true

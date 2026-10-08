@@ -2,6 +2,7 @@ class_name ScreenDimmer extends ColorRect
 
 const DIM_DURATION: float = 1.0
 const WAKE_DURATION: float = 0.5
+const INTRO_DURATION: float = 1.75
 
 @onready var idle_timer: Timer = $"Idle Timer"
 var idle_time: float = 600
@@ -27,8 +28,15 @@ func _exit_tree() -> void:
 	idle_timer.timeout.disconnect(_on_idle_timeout)
 	Main.buttons_ready.disconnect(_init_screen_dimmer)
 
-func _init_screen_dimmer() -> void:
+func _play_intro() -> void:
+	self.color.a = 1.0
+	Main.sound_player.play_startup_chime()
+	dim_tween = create_tween()
+	await dim_tween.tween_property(self, "color:a", 0.0, INTRO_DURATION).finished
 	self.color.a = darkness
+
+func _init_screen_dimmer() -> void:
+	_play_intro()
 	idle_timer.wait_time = idle_time - DIM_DURATION
 	idle_timer.start()
 

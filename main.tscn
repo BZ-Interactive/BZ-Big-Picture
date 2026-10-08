@@ -12,6 +12,11 @@
 [ext_resource type="Script" uid="uid://xkufbuddm5qa" path="res://Assets/Scripts/Buttons/menu_button.gd" id="6_ryguw"]
 [ext_resource type="Texture2D" uid="uid://bndst3huthgxt" path="res://Assets/Icons/svg/Menus/system.svg" id="6_xuqvo"]
 [ext_resource type="Script" uid="uid://ykbom2bclkpj" path="res://Assets/Scripts/screen_dimmer.gd" id="12_dg77c"]
+[ext_resource type="Script" uid="uid://ig0ie4n8fsvf" path="res://Assets/Scripts/sound_player.gd" id="13_ycdy4"]
+[ext_resource type="AudioStream" uid="uid://ctp4gbx1uim2o" path="res://Assets/Sounds/startup_chime.wav" id="14_2cqfq"]
+[ext_resource type="AudioStream" uid="uid://boningitoxav1" path="res://Assets/Sounds/ui_move.wav" id="14_074og"]
+[ext_resource type="AudioStream" uid="uid://0ooslfm7sq85" path="res://Assets/Sounds/menu_move.wav" id="14_yaehf"]
+[ext_resource type="AudioStream" uid="uid://di827pbqyt012" path="res://Assets/Sounds/app_select.wav" id="16_074og"]
 
 [node name="Main" type="Control" unique_id=1969664079]
 layout_mode = 3
@@ -242,3 +247,12 @@ script = ExtResource("12_dg77c")
 [node name="Idle Timer" type="Timer" parent="Screen Dimmer ColorRect" unique_id=1282893471]
 wait_time = 10.0
 one_shot = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=652681]
+script = ExtResource("13_ycdy4")
+app_move = ExtResource("14_074og")
+menu_move = ExtResource("14_yaehf")
+ui_select = ExtResource("16_074og")
+
+[node name="Chime Player" type="AudioStreamPlayer" parent="AudioStreamPlayer" unique_id=2102812372]
+stream = ExtResource("14_2cqfq")
